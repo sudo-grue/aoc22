@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 
 def main():
-    total = 0
+    fs = []
     with open("input.txt", "r") as file:
         for line in file:
-            if line[0].isdigit():
-                total += int(line.split()[0])
+            if line.startswith("$ cd"):
+                data = line.split()[2]
+                if data != "..":
+                    fs.append(f"{data}/")
+                else:
+                    fs.pop()
+                print("".join(fs))
 
-    print(total)
 
 if __name__ == '__main__':
     try:
