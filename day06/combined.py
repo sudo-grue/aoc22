@@ -7,10 +7,12 @@ def main():
     with open("input.txt", "r") as file:
         code = file.read().strip()
 
-        for idx, _ in enumerate(code):
+        for idx in range(len(code)):
+            # slice and convert to set (dedup)
             chunk4 = set(code[idx:idx + 4])
             chunk14 = set(code[idx:idx + 14])
 
+            # if set is proper length, we had no duplicates
             if not part1 and len(chunk4) == 4:
                 part1 = idx + 4
 
