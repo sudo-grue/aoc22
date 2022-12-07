@@ -15,6 +15,7 @@ def main():
             if not line.endswith("..\n"):
                 # set 0 as current dir size
                 stack.append(0)
+            # finished current dir (cd ..)
             else:
                 # pop off the current (deepest) dir
                 single = stack.pop()
@@ -22,7 +23,7 @@ def main():
                 stack[-1] += single
                 # add dir size to totals list
                 totals.append(single)
-
+        # file size found
         elif line[0].isdigit():
             # add size to current dir
             stack[-1] += int(line.split()[0])
@@ -30,6 +31,7 @@ def main():
     # collapse remaining dirs back to root
     while stack:
         single = stack.pop()
+        # avoid idx error for root
         if stack:
             stack[-1] += single
         totals.append(single)
