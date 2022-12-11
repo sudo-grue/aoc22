@@ -1,4 +1,15 @@
 #!/usr/bin/env python3
+"""
+Same as part1 but with 2 exceptions...
+Instead of calculating day 20, calculate at day 10000
+
+Do not floor divide by 3 for each evaluation
+
+This creates a scenario which allows integers to get insanely large.
+The workaround I discovered was to modulo by the lowest common multiple
+of line 4, ensuring that all modulo's are not impacted but keeps the
+integer within a tollerable range
+"""
 
 class Monkey():
     def __init__(self, items):
