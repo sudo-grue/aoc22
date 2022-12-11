@@ -2,6 +2,16 @@
 
 
 def main():
+    """
+    CPU scheduling
+    noop takes 1 cycle
+    addx takes 2 cycles
+
+    addx come with an int arguement of action to take on register X
+
+    at specific cycles (20, 60, 100, 140, 180, 220), multiply the cycle
+    value against the register X and sum the results of each
+    """
     with open("input.txt", "r") as file:
         queue = []
         for line in file:

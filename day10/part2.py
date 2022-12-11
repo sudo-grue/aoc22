@@ -2,6 +2,16 @@
 
 
 def main():
+    """
+    CRT Display scheduling
+    X value in register
+    Cycle represents pixle position
+
+    when range x to x+2 overlaps with current cycle value,
+    print '#', else print '.'
+    print a newline every 40 cycles
+    the answer will be displayed in the ASCII art
+    """
     with open("input.txt", "r") as file:
         queue = []
         for line in file:
