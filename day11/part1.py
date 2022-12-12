@@ -6,7 +6,7 @@ Line 1: Monkey ID (i.e. 0 thru 7)
 Line 2: Items monkey currently possess (represented as ints)
 Line 3: - Monkeys assess each item, the specified math operator occurs to item
         - immediatly following previous math, the value is floor'd by 3 (//3)
-Line 4: Evaluate each item with modulo defined, and apply to line 5 or 6
+Line 4: Evaluate each item with modulo defined, and apply as line 5 or 6
 Line 5: If line 4 evaluates to true... pass item to that monkey
 Line 6: If line 5 evaluates to false... pass item to other monkey
 Line 7: --- BLANK ---
