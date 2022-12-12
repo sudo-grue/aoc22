@@ -1,4 +1,21 @@
 #!/usr/bin/env python3
+"""
+Trees
+You have a matrix of trees, each tree has a defined height
+Part 1:
+From outside the matrix, how many trees can be seen?
+
+A tree can be seen if one of the 4 cardinal directions has no trees
+equal to or greater than the current tree's height
+
+Part 2:
+Find the tree with the greatest visibility
+
+Consider each tree, find the tree that can overlook the most
+other trees (by distance).
+
+Answer is the product of all four(or 3/2) views (edges not being considered).
+"""
 
 import math
 
