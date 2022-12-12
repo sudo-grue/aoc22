@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""
+Part 1:
+Find index of where the previous 4 characters are unique
+
+Part 2:
+Find index of where the previous 14 characters are unique
+"""
 
 
 def main():
