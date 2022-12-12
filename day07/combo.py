@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
+"""
+Directory sizes
+Part 1:
+Calculate the size of each directory. Sum the total of all directories < 100000
 
+Part 2:
+You need free space to update system, find the smallest directory large enough
+to allow 30,000,000 out of 70,000,000. This requires you know the total 
+file system usage, subtract for 70mil, then find the one that allows the diff.
+"""
 
 def main():
     data = []
