@@ -21,29 +21,82 @@ def main():
     end = None
     matrix = []
     with open("input.txt", "r") as file:
-        for line in file:
+        for x, line in enumerate(file):
             matrix.append([])
-            for letter in line.strip():
+            for y, letter in enumerate(line.strip()):
+                # standardize height for Start and End
                 if letter == "S":
-                    matrix[-1].append("`")
-                    start = (len(matrix) - 1, len(matrix[-1] - 1))
+                    matrix[-1].append("a")
+                    start = (x, y)
                 elif letter == "E":
-                    matrix[-1].append("{")
-                    end = (len(matrix) - 1, len(matrix[-1] - 1))
+                    matrix[-1].append("z")
+                    end = (x, y)
                 else:
                     matrix[-1].append(letter)
 
+    # -1 to remove starting point
+    print(len(bfs(matrix, start, end)) - 1)
+
+
+def print_matrix(matrix):
+    for row in matrix:
+        for col in row:
+            print(col, end="")
+        print()
 
 def bfs(matrix, start, end):
-    frontier = []
-    frontier.append(start)
-    explored = set()
+    frontier = [[start]]
+    explored = []
+
+    if start == end:
+        return [start]
+
+    counter = 0
 
     while frontier:
-        curr = frontier.pop(0)
-        if curr in explored:
-            continue
-        if curr =
+        # pop pathlist
+        path = frontier.pop(0)
+        # get last seen node in current pathlist
+        node = path[-1]
+        # if we've never explored this node before, we have things to do
+        if node not in explored:
+
+            for neighbor in get_neighbors(matrix, node):
+                # copy current path for each discovered node and queue back up
+                new_path = path.copy()
+                new_path.append(neighbor)
+                frontier.append(new_path)
+
+                if neighbor == end:
+                    return new_path
+
+        explored.append(node)
+
+
+def get_neighbors(matrix, node):
+    x_min = 0
+    y_min = 0
+    x_max = len(matrix) - 1
+    y_max = len(matrix[0]) - 1
+    # filter by height
+    x, y = node
+    node_height = ord(matrix[x][y])
+
+    neighbors = []
+    if (x_min < x) and (ord(matrix[x - 1][y]) < node_height + 2):
+            neighbors.append((x - 1, y))
+
+    if (x < x_max) and (ord(matrix[x + 1][y]) < node_height + 2):
+            neighbors.append((x + 1, y))
+
+    if y_min < y and ord(matrix[x][y - 1]) < node_height + 2:
+            neighbors.append((x, y - 1))
+
+    if y < y_max and ord(matrix[x][y + 1]) < node_height + 2:
+            neighbors.append((x, y + 1))
+
+    return neighbors
+
 
 if __name__ == '__main__':
     try:
