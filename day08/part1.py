@@ -5,9 +5,7 @@ def main():
     matrix = []
     with open("input.txt", "r") as file:
         for idx, line in enumerate(file):
-            matrix.append([])
-            for val in line.strip():
-                matrix[idx].append(int(val))
+            matrix.append([int(val) for val in line.strip()])
 
     seen = 0
     # run is_visible from all trees
@@ -25,16 +23,16 @@ def is_visible(matrix, x, y):
 
     # current tree's height
     current = matrix[x][y]
-    # if all north
+    # if all west
     if all((val < current for val in matrix[x][:y])):
         return True
-    # if all south
+    # if all east
     if all((val < current for val in matrix[x][y + 1:])):
         return True
-    # if all west
+    # if all north
     if all((matrix[idx][y] < current for idx in range(x))):
         return True
-    # if all east
+    # if all south
     if all((matrix[idx][y] < current for idx in range(x + 1, len(matrix)))):
         return True
 
