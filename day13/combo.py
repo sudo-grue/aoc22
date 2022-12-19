@@ -8,6 +8,11 @@ def main():
     with open("input.txt", "r") as file:
         data = [json.loads(line.strip()) for line in file if line != '\n']
 
+    """
+    Part 1:
+    Compare each set of two lists using recursion and sum up every group
+    where first list is "less-than" right
+    """
     good_idxs = []
     for i in range(len(data) // 2):
         l_idx = i * 2
@@ -16,6 +21,11 @@ def main():
 
     print(sum(good_idxs))
 
+    """
+    Part 2:
+    Sort all lists from least to greatest after adding the two dividers
+    Find index of the two dividers and return their product
+    """
     # divider start and end
     div_s = [[2]]
     div_e = [[6]]
@@ -35,14 +45,17 @@ def main():
     print(start * end)
 
 def compare(left, right):
-    left = left if isinstance(left, list) else [left]
-    right = right if isinstance(right, list) else [right]
-
     """
     +: right < left
     -: left < right
     0: equal
     """
+    # standardize everything to list
+    left = left if isinstance(left, list) else [left]
+    right = right if isinstance(right, list) else [right]
+
+    # compare each element of list until a list runs out of values
+    # or return statement becomes true
     for l_val, r_val in zip(left, right):
         if isinstance(l_val, list) or isinstance(r_val, list):
             result = compare(l_val, r_val)
